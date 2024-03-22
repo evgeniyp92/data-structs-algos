@@ -22,4 +22,27 @@ function maxChar(str) {
 	return maxchar
 }
 
+function maxCharAlternate(str) {
+	let max = 0;
+	let maxChar = ''
+	const charMap = {};
+
+	for (let char of str) {
+		if (charMap[char]) {
+			charMap[char]++
+		} else {
+			charmMap[char] = 1
+		}
+	}
+
+	for (const charMapKey in charMap) {
+		if (charMap[charMapKey] > max) {
+			max = charMap[charMapKey]
+			maxChar = charMapKey
+		}
+	}
+
+	return maxChar
+}
+
 module.exports = maxChar;
