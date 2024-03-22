@@ -75,6 +75,7 @@ function anagramsAlt(stringA, stringB) {
 
 function buildCharMap(string) {
 	const seen = {}
+	// regex here is replacing []-character groups that are ^-not \w-words g-globally
 	const cleanString = string.replace(/[^\w]g/, '').toLowerCase()
 	for (const char of cleanString) {
 		if (seen[char]) {
@@ -84,6 +85,25 @@ function buildCharMap(string) {
 		}
 	}
 	return seen
+}
+
+// ------------------------------------------------------------------------------------------------------------------ //
+
+// this one has performance issues related to the sort taking up more time as the strings get bigger
+function anagramsWithArrays(stringA, stringB) {
+	const cleanStringA = cleanAndSortString(stringA)
+	const cleanStringB = cleanAndSortString(stringB);
+	for (let i = 0; i < cleanStringA.length; i++) {
+		if (cleanStringA[i] !== cleanStringB[i]) return false
+	}
+	return true
+
+	// alternative, because no concerns about referential equality
+	cleanAndSortString(stringA) === cleanAndSortString(stringB)
+}
+
+function cleanAndSortString(string) {
+	return string.replace(/[\^w]g/, '').toLowerCase().split('').sort().join()
 }
 
 module.exports = anagrams;
