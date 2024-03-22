@@ -47,6 +47,19 @@ function chunkAlternate(array, size) {
 	return chunked
 }
 
+function chunkSlicing(array, size) {
+	const chunked = [];
+	let index = 0;
+
+	while (index < array.length) {
+		const slice = array.slice(index, index + size)
+		chunked.push(slice)
+		index += size
+	}
+
+	return chunked
+}
+
 function chunkSlicingRecursive(array, size) {
 	// base case
 	if (array.length <= size) {
