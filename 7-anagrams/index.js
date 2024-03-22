@@ -16,19 +16,23 @@ function anagrams(stringA, stringB) {
 	const parsedStringA = stringA.replace(/[^\w]/g, "").toLowerCase()
 	const parsedStringsB = stringB.replace(/[^\w]/g, "").toLowerCase()
 
+	// early return if the string lengths dont match, they can't be anagrams
+	if (parsedStringA.length !== parsedStringsB.length) return false
+
+	// not relevant -- see above
 	// figure out which string is the longer one
-	let longerString
-	let shorterString
-	if (parsedStringA.length > parsedStringsB.length) {
-		longerString = parsedStringA
-		shorterString = parsedStringsB
-	} else {
-		longerString = parsedStringsB
-		shorterString = parsedStringA
-	}
+	// let longerString
+	// let shorterString
+	// if (parsedStringA.length > parsedStringsB.length) {
+	// 	longerString = parsedStringA
+	// 	shorterString = parsedStringsB
+	// } else {
+	// 	longerString = parsedStringsB
+	// 	shorterString = parsedStringA
+	// }
 
 	// build charmap
-	for (const element of longerString) {
+	for (const element of parsedStringA) {
 		if (seen[element]) {
 			seen[element]++
 		} else {
@@ -36,7 +40,7 @@ function anagrams(stringA, stringB) {
 		}
 	}
 	// remove elements from charmap
-	for (const element of shorterString) {
+	for (const element of parsedStringsB) {
 		if (seen[element]) {
 			seen[element]--
 		}
@@ -46,6 +50,12 @@ function anagrams(stringA, stringB) {
 		if (seen[seenKey] !== 0) return false
 	}
 	return true
+}
+
+function anagramsAlt(stringA, stringB) {
+	function generateCharMap(string) {
+
+	}
 }
 
 module.exports = anagrams;
