@@ -47,6 +47,17 @@ function chunkAlternate(array, size) {
 	return chunked
 }
 
-console.log(chunkAlternate([1,2,3,4,5], 2))
+function chunkSlicingRecursive(array, size) {
+	// base case
+	if (array.length <= size) {
+		return [array]
+	}
+	// return a new array containing a slice from nominal 0 to size, then concat onto it the result of calling the
+	// function recursively, wherein the array arg is the already sliced array beginning at size, going further to size
+	return [array.slice(0, size)].concat
+	(chunkSlicingRecursive(array.slice(size), size))
+}
+
+console.log(chunkSlicingRecursive([1,2,3,4,5], 2))
 
 module.exports = chunk;
