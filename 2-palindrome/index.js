@@ -19,12 +19,18 @@ function palindrome(str) {
 		}
 	}
 	return palindrome
+	// O(n) because the array gets traversed entirely
 }
 
 // Alternate solution with reverse method
 function palindromeWithReversed(str) {
 	const reversed = str.split('').reverse().join('')
 	return str === reversed;
+}
+
+function palindromeWithEvery(str) {
+	// not efficient because every will traverse the entire array (double comparison)
+	return str.split('').every((value, index, array) => value === str[str.length - index - 1])
 }
 
 module.exports = palindrome;
