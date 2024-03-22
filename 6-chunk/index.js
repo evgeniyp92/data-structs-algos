@@ -48,12 +48,18 @@ function chunkAlternate(array, size) {
 }
 
 function chunkSlicing(array, size) {
+	// array of chunks
 	const chunked = [];
+	// pointer
 	let index = 0;
 
+	// as long as pointer is inbounds
 	while (index < array.length) {
+		// make a slice of array starting at pointer going to size
 		const slice = array.slice(index, index + size)
+		// push it to chunked
 		chunked.push(slice)
+		// move the pointer
 		index += size
 	}
 
