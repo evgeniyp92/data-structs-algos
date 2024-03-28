@@ -68,4 +68,16 @@ function stepsRecursion(n) {
     // recursion case
 }
 
+// recursion refresher
+function printNumber(n) {
+    // always identify a base case
+    if (n === 0) return;
+    // do work
+    console.log(n)
+    // call the function again
+    return printNumber(n - 1)
+}
+
+printNumber(10)
+
 module.exports = stepsAlternate;
