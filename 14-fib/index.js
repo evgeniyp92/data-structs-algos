@@ -9,7 +9,9 @@
 //   fib(4) === 3
 
 function fib(n) {
-    // O(?) complexity, 600-1000ms to run the tests
+    // O(2^n) complexity, 500-600ms to run fib(15)
+    // it doesnt exactly double, but it is a dramatic increase in function calls to calculate a value
+    // never do recursion unless you're specifically asked
     if (n < 2) return n
     return fib(n - 1) + fib(n - 2)
     // this works because the returned function calls always work down to fib(0) or fib(1)
@@ -18,7 +20,7 @@ function fib(n) {
 }
 
 function fibIterative(n) {
-    // O(n) time complexity, 300ms to run the tests
+    // O(n) time complexity, <1ms to run fib(15)
     const fibArray = [0,1]
     for (let i = 2; i <= n; i++) {
         fibArray.push(fibArray[i - 1] + fibArray[i - 2])
