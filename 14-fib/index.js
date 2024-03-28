@@ -8,14 +8,14 @@
 // Example:
 //   fib(4) === 3
 
-function slowFib(n) {
+function fib(n) {
 /*
     O(2^n) complexity, 500-600ms to run fib(15)
     it doesnt exactly double, but it is a dramatic increase in function calls to calculate a value
     never do recursion unless you're specifically asked
 */
     if (n < 2) return n
-    return slowFib(n - 1) + slowFib(n - 2)
+    return memoFib(n - 1) + memoFib(n - 2)
 /*
     This works because the returned function calls always work down to fib(0) or fib(1)
     so at the base level we just add zeroes and ones, and we work our way back up with bigger and bigger numbers
@@ -44,7 +44,8 @@ function memoize(fn) {
     }
 }
 
-const fib = memoize(slowFib)
+// when memoizing its important to replace recursive calls inside the memoized function with the memoized version
+const memoFib = memoize(fib)
 
 function fibIterative(n) {
     // O(n) time complexity, <1ms to run fib(15)
@@ -55,4 +56,4 @@ function fibIterative(n) {
     return fibArray[n]
 }
 
-module.exports = fib;
+module.exports = memoFib;
