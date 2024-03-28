@@ -45,6 +45,7 @@ function memoize(fn) {
 }
 
 // when memoizing its important to replace recursive calls inside the memoized function with the memoized version
+// memoizing almost always brings down the time complexity of a function, in the case of fibonacci it is O(n)
 const memoFib = memoize(fib)
 
 function fibIterative(n) {
