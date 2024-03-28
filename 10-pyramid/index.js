@@ -72,6 +72,9 @@ function pyramidRecursive(n, row = 0, level = '') {
 
     const midpoint = Math.floor((2 * n - 1) / 2);
     let add;
+    // this works because we're iterating left-to-right over the level and checking if we're 'in-bounds' of where we
+    // should be printing #'s. so for the first level, the first two times it actually returns empty string and only
+    // then adds
     if (midpoint - row <= level.length && midpoint + row >= level.length) {
         add = '#';
     } else {
@@ -80,3 +83,5 @@ function pyramidRecursive(n, row = 0, level = '') {
 
     return pyramidRecursive(n, row, level + add)
 }
+
+pyramidRecursive(4)
