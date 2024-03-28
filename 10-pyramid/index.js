@@ -38,4 +38,45 @@ function pyramid(n, row = 0, level = ['#']) {
     return pyramid(n, row, level)
 }
 
-module.exports = pyramid;
+module.exports = pyramidRecursive;
+
+function pyramidWithLoop(n) {
+    // calculate the midpoint of the row -- midpoint can also just be n-1
+    const midpoint = Math.floor((2 * n - 1) / 2)
+    // iterate over rows
+    for (let row = 0; row < n; row++) {
+        // set up an empty string
+        let level = ''
+        // iterate over columns of a row
+        for (let column = 0; column < 2 * n - 1; column++) {
+            // check if we're in bounds of where we should be printing
+            // so for row 0 its only at the center
+            // for row 1 its one away from the center
+            if (midpoint - row <= column && midpoint + row >= column) {
+                level += '#'
+            } else {
+                level += ' '
+            }
+        }
+        console.log(level)
+    }
+}
+
+function pyramidRecursive(n, row = 0, level = '') {
+    if (n === row) return;
+
+    if (level.length === 2 * n - 1) {
+        console.log(level);
+        return pyramid(n, row + 1)
+    }
+
+    const midpoint = Math.floor((2 * n - 1) / 2);
+    let add;
+    if (midpoint - row <= level.length && midpoint + row >= level.length) {
+        add = '#';
+    } else {
+        add = ' ';
+    }
+
+    return pyramidRecursive(n, row, level + add)
+}
