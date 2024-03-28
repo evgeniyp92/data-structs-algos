@@ -62,10 +62,50 @@ function stepsAlternate(n) {
     }
 }
 
-function stepsRecursion(n) {
+function stepsRecursion(n, row = 0) {
     // base case
+    // if row === n we have hit the end
+    // is stair has a length of n we are at the end of the row
+    // if length of stair is less than or equal to row number worked on, add # otherwise ' ';
+    if (n === row) {
+        return;
+    }
+    // work
+    let stair = ''
+    for (let i = 0; i <= n; i++) {
+        if (stair.length <= row) {
+            stair += '#'
+        } else {
+            stair += ' '
+        }
+    }
+    console.log(stair)
+    // recurse
+    return stepsRecursion(n, row + 1)
+}
 
-    // recursion case
+stepsRecursion(4)
+
+function stepsMoreRecursion(n, row = 0, stair = '') {
+    // base case: we're at the end of the steps
+    if (n === row) {
+        return;
+    }
+
+    // if the length of the stair is n, the stair is done, recurse with a new row and an empty stair
+    if (n === stair.length) {
+        console.log(stair)
+        return stepsMoreRecursion(n, row + 1)
+    }
+
+    // the stair is too short, so look where we are and append the necessary character. then call the func
+    // recursively with the working stair and row
+    if (stair.length <= row) {
+        stair += '#'
+    } else {
+        stair += ' '
+    }
+    return stepsMoreRecursion(n, row, stair)
 }
 
 // recursion refresher
