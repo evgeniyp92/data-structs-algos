@@ -24,19 +24,21 @@ function slowFib(n) {
 }
 
 function memoize(fn) {
-    // make a record of all previous calls to the function
-    const cache = {};
+    // make a record of all previous calls to the function in a Map
+    const cache = new Map()
     // return an anonymous function with the args provided
     return function(...args) {
+        // stringify the args
+        const key = JSON.stringify(args)
         // if we've seen this function called this way before
-        if (cache[args]) {
+        if (cache.has(key)) {
             // return the result immediately
-            return cache[args]
+            return cache.get(key)
         }
         // using apply to allow us to call fn with an array of args
         const result = fn.apply(null, args)
         // store the result
-        cache[args] = result;
+        cache.set(key, result);
         // return it
         return result;
     }
